@@ -4,7 +4,7 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["chapp-reservations.herokuapp.com"]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
