@@ -83,3 +83,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# SECURITY WARNING: These two are only here for Chapp application purposes
+#                   They should never be enabled in production
+SECRET_KEY = 'django-insecure-!r#*1pnb-r^c0ehf2r#a#77gw!dtk(g+^(zerj-ofsz2x@09yx'
+DEBUG = True
