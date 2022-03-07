@@ -48,11 +48,14 @@ WSGI_APPLICATION = 'reservations.wsgi.application'
 # Database
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd7hnc7tc1jhcge',
+        'USER': 'dctrgujoundpif',
+        'PASSWORD': '0608892f6e4b559446cd9c6e6ed7550a10be21753d15adc1788bcd654b64712c',
+        'HOST': 'ec2-34-253-29-48.eu-west-1.compute.amazonaws.com',
+        'PORT': '5432',
     }
 }
-
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
