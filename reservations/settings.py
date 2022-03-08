@@ -4,7 +4,7 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-ALLOWED_HOSTS = ["chapp-reservations.herokuapp.com"]
+ALLOWED_HOSTS = ["chapp-reservations.herokuapp.com", "127.0.0.1"]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -48,12 +48,8 @@ WSGI_APPLICATION = 'reservations.wsgi.application'
 # Database
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd7hnc7tc1jhcge',
-        'USER': 'dctrgujoundpif',
-        'PASSWORD': '0608892f6e4b559446cd9c6e6ed7550a10be21753d15adc1788bcd654b64712c',
-        'HOST': 'ec2-34-253-29-48.eu-west-1.compute.amazonaws.com',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -88,6 +84,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # SECURITY WARNING: These two are only here for Chapp application purposes
-#                   They should never be enabled in production
+#                   They should never be visible in production
 SECRET_KEY = 'django-insecure-!r#*1pnb-r^c0ehf2r#a#77gw!dtk(g+^(zerj-ofsz2x@09yx'
-DEBUG = True
+# DEBUG = True
