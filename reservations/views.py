@@ -1,7 +1,10 @@
 from django.shortcuts import render
 
 # Create your views here.
-from django.http import HttpResponse
+from django.views.generic import TemplateView
 
-def dumb(request, data = None):
-    return HttpResponse("Hellodumb %s." % data)
+class Index(TemplateView):
+    template_name = "index.html"
+
+    def get(self, request):
+        return render(request, self.template_name, None)

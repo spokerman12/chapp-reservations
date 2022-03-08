@@ -13,7 +13,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'reservations'
+    'reservations',
 ]
 
 MIDDLEWARE = [
@@ -78,7 +78,7 @@ USE_L10N = True
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
@@ -87,4 +87,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # SECURITY WARNING: These two are only here for Chapp application purposes
 #                   They should never be visible in production
 SECRET_KEY = 'django-insecure-!r#*1pnb-r^c0ehf2r#a#77gw!dtk(g+^(zerj-ofsz2x@09yx'
-# DEBUG = True
+DEBUG = True
