@@ -4,7 +4,7 @@ from datetime import timedelta, datetime
 
 from django.core.exceptions import ValidationError
 
-TODAY = datetime.today().replace(hour=0, minute=0, second=0, microsecond=0)
+TODAY = datetime.today().replace(hour=0, minute=0, second=0, microsecond=0).date()
 TOMORROW = TODAY + timedelta(days=1)
 
 
@@ -12,7 +12,7 @@ def convert_dt(date_str):
     """
     Convierte una fecha "%Y-%m-%d" en datetime.date
     """
-    if type(date_str) == type(datetime.today()):
+    if type(date_str) == datetime:
         return date_str.date()
     if type(date_str) == str:
         return datetime.strptime(date_str, "%Y-%m-%d").date()
