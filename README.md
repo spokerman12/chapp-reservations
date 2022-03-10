@@ -14,6 +14,9 @@ Si prefieres ejecutarlo localmente:
 4. `python manage.py runserver`
 5. Abre [http://127.0.0.1:8000/](http://127.0.0.1:8000/) en tu navegador.
 
+Puedes ejecutar las pruebas con `python manage.py test`.
+También se ha habilitado CI/CD en Github.
+
 ## Argumentos:
 
 - Suelo tomar en cuenta la escalabilidad en el diseño del código. Sin embargo, también valoro la visión de producto. Por ello esta es una aplicación que no utiliza una API entre los template y el backend, lo que es el deber ser si se quiere trabajar seriamente en este programa.
