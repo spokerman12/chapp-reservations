@@ -12,7 +12,11 @@ def convert_dt(date_str):
     """
     Convierte una fecha "%Y-%m-%d" en datetime.date
     """
-    return datetime.strptime(date_str, "%Y-%m-%d").date()
+    if type(date_str) == datetime:
+        return date_str.date()
+    if type(date_str) == str:
+        return datetime.strptime(date_str, "%Y-%m-%d").date()
+    return date_str
 
 
 def validate_gte_zero(value):
@@ -34,8 +38,7 @@ def validate_check_in(value):
     """
     Verifica que value no sea en el pasado
     """
-    if type(value) == str:
-        value = convert_dt(value)
+    value = convert_dt(value)
     if value < TODAY:
         raise ValidationError(
             f"Check-in date {value} must be at least today.",
@@ -46,8 +49,7 @@ def validate_check_out(value):
     """
     Verifica que value sea al menos mañana
     """
-    if type(value) == str:
-        value = convert_dt(value)
+    value = convert_dt(value)
     if value < TOMORROW:
         raise ValidationError(
             f"Check-out date {value} must be at least tomorrow.",
@@ -58,8 +60,7 @@ def validate_current_year(value):
     """
     Verifica que value sea en el año en curso
     """
-    if type(value) == str:
-        value = convert_dt(value).year
+    value = convert_dt(value).year
     if value != datetime.today().year:
         raise ValidationError(
             f"Please select a date in {datetime.today().year}",
@@ -71,10 +72,8 @@ def validate_check_in_out(check_in, check_out):
     Verifica que check_in sea antes que check_out
     """
 
-    if type(check_in) == str:
-        check_in = convert_dt(check_in)
-    if type(check_out) == str:
-        check_out = convert_dt(check_out)
+    check_in = convert_dt(check_in)
+    check_out = convert_dt(check_out)
 
     if check_in >= check_out:
         raise ValidationError(
