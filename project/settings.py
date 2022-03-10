@@ -88,4 +88,4 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # SECURITY WARNING: These two are only here for Chapp application purposes
 #                   They should never be visible in production
 SECRET_KEY = "django-insecure-!r#*1pnb-r^c0ehf2r#a#77gw!dtk(g+^(zerj-ofsz2x@09yx"
-DEBUG = True
+# DEBUG = True
