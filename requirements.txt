@@ -2,7 +2,7 @@ asgiref==3.4.1
 Babel==2.9.1
 black==22.1.0
 click==8.0.4
-dataclasses==0.8
+dataclasses
 Django==3.2.12
 django-angular==2.3
 django-money==2.1.1
