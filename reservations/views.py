@@ -13,6 +13,7 @@ class Index(TemplateView):
     Vista principal para iniciar el proceso
     de reserva
     """
+
     template_name = "index.html"
 
     def get(self, request):
@@ -24,6 +25,7 @@ class Offers(TemplateView):
     Vista donde se muestran las
     posibilidades de reserva
     """
+
     template_name = "offers.html"
 
     def post(self, request):
@@ -55,6 +57,7 @@ class Confirm(TemplateView):
     Vista donde se provee la información
     de contacto para confirmar la reserva
     """
+
     template_name = "confirm.html"
 
     def post(self, request):
@@ -76,6 +79,7 @@ class Success(TemplateView):
     Vista donde se muestra el número localizador
     de la reserva
     """
+
     template_name = "success.html"
 
     def post(self, request):
@@ -113,6 +117,7 @@ class List(TemplateView):
     Vista de listado de todas las
     reservas en el sistema
     """
+
     template_name = "list.html"
 
     def get(self, request):
@@ -121,6 +126,7 @@ class List(TemplateView):
 
 
 # Vistas para páginas de error
+
 
 def error_404_view(request, *args, **argv):
     response = render(
