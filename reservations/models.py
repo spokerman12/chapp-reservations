@@ -1,4 +1,3 @@
-from wsgiref.validate import validator
 from .validators import (
     validate_check_in,
     validate_check_out,
@@ -16,6 +15,13 @@ from djmoney.models.fields import MoneyField
 
 
 class RoomType(models.Model):
+    """
+    Tipo de habitación.
+
+    En la base de datos inicial tenemos:
+    Individuales, dobles, triples, y familiares (cuádruples)
+    """
+
     name = models.CharField(max_length=24, blank=False, null=False)
     max_capacity = models.IntegerField(
         validators=[validate_guests], blank=False, null=False
@@ -35,6 +41,14 @@ class RoomType(models.Model):
 
 
 class Room(models.Model):
+    """
+    Habitación.
+
+    Su número es la clave primaria auto-incremental.
+    Se pudiera representar en formato 001.
+    Una habitación debe ser de un tipo.
+    """
+
     number = models.AutoField(primary_key=True)
     room_type = models.ForeignKey(
         RoomType, on_delete=models.PROTECT, blank=False, null=False
@@ -45,6 +59,17 @@ class Room(models.Model):
 
 
 class Reservation(models.Model):
+    """
+    Reserva.
+
+    El localizador es un UUID, actuando como clave primaria.
+    Inicialmente hice un modelo Cliente pero como no se asume que un cliente
+    puede hacer varias reservas, no es necesario conservar la identidad.
+
+    El campo valid funciona para deshabilitar reservas, lo que puede ser útil
+    para no considerarlas pero sin borrarlas.
+    Su funcionalidad está por implementarse.
+    """
 
     locator = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     contact_name = models.CharField(max_length=254, blank=False, null=False)

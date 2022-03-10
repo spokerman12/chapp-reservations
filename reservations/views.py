@@ -9,6 +9,10 @@ import sys
 
 
 class Index(TemplateView):
+    """
+    Vista principal para iniciar el proceso
+    de reserva
+    """
     template_name = "index.html"
 
     def get(self, request):
@@ -16,6 +20,10 @@ class Index(TemplateView):
 
 
 class Offers(TemplateView):
+    """
+    Vista donde se muestran las
+    posibilidades de reserva
+    """
     template_name = "offers.html"
 
     def post(self, request):
@@ -43,6 +51,10 @@ class Offers(TemplateView):
 
 
 class Confirm(TemplateView):
+    """
+    Vista donde se provee la información
+    de contacto para confirmar la reserva
+    """
     template_name = "confirm.html"
 
     def post(self, request):
@@ -60,10 +72,18 @@ class Confirm(TemplateView):
 
 
 class Success(TemplateView):
+    """
+    Vista donde se muestra el número localizador
+    de la reserva
+    """
     template_name = "success.html"
 
     def post(self, request):
 
+        # Verifica que no haya reservas que solapen.
+        # Esto debería confirmarse solo una vez,
+        # pero por motivos prácticos se ejecuta de
+        # esta forma.
         if overlapping_reservations(
             room_id=request.POST["room_number"],
             check_in=request.POST["check_in"],
@@ -75,7 +95,7 @@ class Success(TemplateView):
             )
         locator = Reservation.objects.create(
             room_id=request.POST["room_number"],
-            # num_guests=request.POST["num_guests"],
+            num_guests=request.POST["num_guests"],
             cost=request.POST["full_price"],
             check_in=request.POST["check_in"],
             check_out=request.POST["check_out"],
@@ -89,12 +109,18 @@ class Success(TemplateView):
 
 
 class List(TemplateView):
+    """
+    Vista de listado de todas las
+    reservas en el sistema
+    """
     template_name = "list.html"
 
     def get(self, request):
         reservations = Reservation.objects.all()
         return render(request, self.template_name, {"reservations": reservations})
 
+
+# Vistas para páginas de error
 
 def error_404_view(request, *args, **argv):
     response = render(
