@@ -9,7 +9,7 @@ Puedes visitar [https://chapp-reservations.herokuapp.com](https://chapp-reservat
 Si prefieres ejecutarlo localmente:
 
 1. Clona este repo
-2. Crea y activa un [entorno virtual de Python](https://virtualenv.pypa.io/en/latest/) (opcional, recomendado). Debes usar  Python >= 3.6
+2. Crea y activa un [entorno virtual de Python](https://virtualenv.pypa.io/en/latest/) (opcional, recomendado). Debes usar  Python >= 3.7.12
 3. `pip install -r requirements.txt`
 4. `python manage.py runserver`
 5. Abre [http://127.0.0.1:8000/](http://127.0.0.1:8000/) en tu navegador.
@@ -17,6 +17,7 @@ Si prefieres ejecutarlo localmente:
 ## Argumentos:
 
 - Suelo tomar en cuenta la escalabilidad en el diseño del código. Sin embargo, también valoro la visión de producto. Por ello esta es una aplicación que no utiliza una API entre los template y el backend, lo que es el deber ser si se quiere trabajar seriamente en este programa.
+- Usé Django 3.2 porque tiene LTS
 - Apunté a entregar algo completo y que funcione. Aún así, considero que hay muchas mejoras posibles, como por ejemplo:
     - Refactorizaciones
     - Implementación de una REST API de verdad
