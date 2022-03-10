@@ -6,6 +6,8 @@ from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 
 import sys
+
+
 class Index(TemplateView):
     template_name = "index.html"
 
@@ -93,27 +95,30 @@ class List(TemplateView):
         reservations = Reservation.objects.all()
         return render(request, self.template_name, {"reservations": reservations})
 
+
 def error_404_view(request, *args, **argv):
     response = render(
         request,
-        'custom_404.html',
+        "custom_404.html",
     )
     response.status_code = 404
     return response
 
+
 def error_500_view(request, *args, **argv):
     response = render(
         request,
-        'custom_500.html',
+        "custom_500.html",
         {"error_message": sys.exc_info()[1]},
     )
     response.status_code = 500
     return response
 
+
 def error_400_view(request, *args, **argv):
     response = render(
         request,
-        'custom_400.html',
+        "custom_400.html",
     )
     response.status_code = 400
     return response

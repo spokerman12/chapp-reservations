@@ -66,7 +66,11 @@ class Reservation(models.Model):
         blank=False,
         null=False,
     )
-    num_guests = models.IntegerField(default=1, validators=[validate_guests], blank=False, null=False),
+    num_guests = (
+        models.IntegerField(
+            default=1, validators=[validate_guests], blank=False, null=False
+        ),
+    )
     cost = MoneyField(
         validators=[validate_gte_zero],
         decimal_places=2,

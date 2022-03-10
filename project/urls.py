@@ -13,6 +13,6 @@ urlpatterns = [
 
 # Para poder imprimir los mensajes de error
 # puedo hacer override de las paginas
-handler404 = 'reservations.views.error_404_view'
-handler500 = 'reservations.views.error_500_view'
-handler400 = 'reservations.views.error_400_view'
+handler404 = "reservations.views.error_404_view"
+handler500 = "reservations.views.error_500_view"
+handler400 = "reservations.views.error_400_view"
