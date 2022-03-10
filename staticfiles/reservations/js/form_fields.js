@@ -1,3 +1,6 @@
+// Cambia el estilo de los campos de texto
+// cuando se va a escribir en ellos.
+
 $('.form-control').each(function () {
     floatedLabel($(this));
 });

@@ -91,11 +91,6 @@ class Reservation(models.Model):
         blank=False,
         null=False,
     )
-    num_guests = (
-        models.IntegerField(
-            default=1, validators=[validate_guests], blank=False, null=False
-        ),
-    )
     cost = MoneyField(
         validators=[validate_gte_zero],
         decimal_places=2,
@@ -108,6 +103,10 @@ class Reservation(models.Model):
 
     room = models.ForeignKey(Room, on_delete=models.PROTECT, blank=False, null=False)
     valid = models.BooleanField(default=True, blank=False, null=False)
+
+    num_guests = models.IntegerField(
+        default=1, validators=[validate_guests], blank=False, null=False
+    )
 
     def __str__(self):
         return str(self.locator)[:7]
