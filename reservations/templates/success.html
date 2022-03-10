@@ -1,0 +1,35 @@
+{% load static %}
+{% include "header.html" %}
+
+<body>
+    <div id="booking" class="section">
+        <div class="section-center centered">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="booking-cta">
+                            <h1>Su número de reserva es: {{ locator }}</h1>
+                            <p> ¡Gracias! Tome nota de este número.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 only-button-div col-md-offset-1">
+                        <div class="booking-form">
+                            <form method="get" action={% url 'list' %}>
+                                <div class="form-btn">
+                                    <button class="submit-btn">Ver lista de reservas</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'reservations/js/jquery.min.js' %}"></script>
+    <script src="{% static 'reservations/js/form_fields.js' %}"></script>
+
+
+</body>
+
+</html>

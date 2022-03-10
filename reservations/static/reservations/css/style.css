@@ -1,13 +1,74 @@
+.link {
+	color: #2b9328;
+}
+
+td  {
+	text-align: center;
+	min-width: 10%;
+	padding: 10px;
+	width: 10%;
+}
+
+th {
+	text-align: center;
+	width: 10%;
+	padding: 15px;
+}
+
+.offers {
+	display: flex;
+}
+
+.room-row {
+	display: flex;
+	width: 100%;
+	flex-direction: row;
+}
+
+.room-row-item {
+	width: 50%;
+}
+
+.only-button-div {
+	margin-top: 10%;
+}
+
+.scrollable {
+	overflow-y: scroll;
+	max-height: 50vh;
+}
+
+.scrollable.reserves-list {
+	width: 1200px;
+}
+
 .section {
 	position: relative;
 	height: 100vh;
 }
 
 .section .section-center {
-	position: absolute;
+	position: relative;
 	top: 50%;
 	left: 0;
 	right: 0;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+
+.section-centered {
+	right: 25%;
+	left: 25%;
+	position: absolute;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+
+.reserves-list-section-centered {
+	left: 10%;
+	position: absolute;
+	top: 50%;
 	-webkit-transform: translateY(-50%);
 	transform: translateY(-50%);
 }
@@ -27,6 +88,10 @@
 	bottom: 0;
 	top: 0;
 	background: rgba(255, 255, 255, 0.8);
+}
+
+.scrollable.booking-form.booking-list {
+	max-width: 200%;
 }
 
 .booking-cta {

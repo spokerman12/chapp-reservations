@@ -1,0 +1,59 @@
+{% load static %}
+{% include "header.html" %}
+
+<body>
+    <div id="booking" class="section">
+        <div class="section-centered">
+            <div class="container reserves-container">
+                <div class="row">
+                    <div class="row">
+                        <div class="booking-cta">
+                            <h1>Listado de reservas</h1>
+                            <p>Para generar una reserva, haga clic <a class="link" href="/">aquí</a>.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scrollable booking-form booking-list">
+                <div>
+                    <table>
+                        <tr>
+                            <th>Localizador</th>
+                            <th>Núm. Hab.</th>
+                            <th>A nombre de</th>
+                            <th>Ingreso</th>
+                            <th>Salida</th>
+                            <th>Núm. Huéspedes</th>
+                            <th>Costo</th>
+                        </tr>
+                        {% for reservation in reservations %}
+                        <tr>
+                            <td>{{ reservation.locator }}</td>
+                            <td>{{ reservation.room.number }}</td>
+                            <td>{{ reservation.contact_name }}
+                                <br>{{ reservation.email }}
+                                <br>{{reservation.phone_number }}
+                            </td>
+                            <td>{{ reservation.check_in }}</td>
+                            <td>{{ reservation.check_out }}</td>
+                            <td>{{ reservation.num_guests }}</td>
+                            <td>{{ reservation.cost }}</td>
+                            <td>
+                                <form>
+                                    <input type="submit" class="submit-btn room-item" value="Acción">
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'reservations/js/jquery.min.js' %}"></script>
+    <script src="{% static 'reservations/js/form_fields.js' %}"></script>
+
+</body>
+
+</html>

@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-class ProjectTestCase(TestCase):
 
+class ReservationsTestCase(TestCase):
     def test_base(self):
         self.assertEqual(0, 0)

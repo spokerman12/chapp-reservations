@@ -1,0 +1,68 @@
+{% load static %}
+{% include "header.html" %}
+
+<body>
+    <!-- <h1>{% for key,value in title.items %}{{ value }}{% endfor %}</h1> -->
+    <div id="booking" class="section">
+        <div class="section-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="booking-cta">
+                            <h1>Confirme su reserva</h1>
+                            <p>Un último paso. Mantendremos su información segura</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-md-offset-1">
+                        <div class="booking-form">
+                            <form method="post" action={% url 'success' %}>
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input name="contact_name" class="form-control" type="text">
+                                            <span class="form-label">Nombre</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input name="email" class="form-control" type="email">
+                                            <span class="form-label">Correo Electrónico</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input name="phone" class="form-control" type="tel">
+                                            <span class="form-label">Teléfono</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-btn">
+                                    <!--
+                                        Esta NO es la mejor forma de comunicar datos para este tipo
+                                        de aplicaciones. Es solo una prueba de concepto.
+                                    -->
+                                    <input name="room_number" type="hidden" value="{{ room_number }}">
+                                    <input name="num_guests" type="hidden" value="{{ num_guests }}">
+                                    <input name="full_price" type="hidden" value="{{ full_price }}">
+                                    <input name="check_in" type="hidden" value="{{ check_in }}">
+                                    <input name="check_out" type="hidden" value="{{ check_out }}">
+                                    <button class="submit-btn">Reservar Ya</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'reservations/js/jquery.min.js' %}"></script>
+    <script src="{% static 'reservations/js/form_fields.js' %}"></script>
+
+
+</body>
+
+</html>

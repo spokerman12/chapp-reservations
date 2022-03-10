@@ -1,0 +1,73 @@
+{% load static %}
+{% include "header.html" %}
+
+<body>
+  <div id="booking" class="section">
+    <div class="section-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-5">
+            <div class="booking-cta">
+              <h1>Escoja una habitación</h1>
+              <p>Tenemos {{ num_offers }} opciones disponibles</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-md-offset-1">
+            <div class="booking-form scrollable">
+              <table>
+                <tr>
+                  <th>Nro. Hab.</th>
+                  <th>Tipo</th>
+                  <th>Precio/noche</th>
+                  <th>Total</th>
+                </tr>
+                {% for room in offers %}
+                <tr>
+                  <td>{{ room.number }}</td>
+                  <td>{{ room.room_type.name }}</td>
+                  <td>{{ room.per_night }}</td>
+                  <td>€{{ room.full_price }}</td>
+                  <td>
+                    <form method="post" action={% url 'confirm' %}>
+                      {% csrf_token %}
+                      <input name="room_number" type="hidden" value="{{ room.number }}">
+                      <input name="num_guests" type="hidden" value="{{ num_guests }}">
+                      <input name="full_price" type="hidden" value="{{ room.full_price }}">
+                      <input name="check_in" type="hidden" value="{{ check_in }}">
+                      <input name="check_out" type="hidden" value="{{ check_out }}">
+                      <input type="submit" class="submit-btn room-item" value="Book">
+                    </form>
+                  </td>
+                </tr>
+                {% endfor %}
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="{% static 'reservations/js/jquery.min.js' %}"></script>
+  <script>
+    $('.form-control').each(function () {
+      floatedLabel($(this));
+    });
+
+    $('.form-control').on('input', function () {
+      floatedLabel($(this));
+    });
+
+    function floatedLabel(input) {
+      var $field = input.closest('.form-group');
+      if (input.val()) {
+        $field.addClass('input-not-empty');
+      } else {
+        $field.removeClass('input-not-empty');
+      }
+    }
+  </script>
+
+</body>
+
+</html>
