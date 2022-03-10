@@ -29,6 +29,17 @@ class TestUtils(TestCase):
             valid=True,
             num_guests=1,
         )
+        self.res_1b = Reservation.objects.create(
+            contact_name="John",
+            email="john@son.com",
+            phone_number=123123,
+            check_in="2022-05-03",
+            check_out="2022-05-06",
+            cost=20,
+            room=self.room_1,
+            valid=True,
+            num_guests=1,
+        )
         self.res_2 = Reservation.objects.create(
             contact_name="Gun",
             email="gun@ner.com",
@@ -57,31 +68,52 @@ class TestUtils(TestCase):
             self.room_1 in get_occupied_rooms("2022-04-04", "2022-04-05", 1)
         )
         self.assertTrue(
-            self.room_2 not in get_occupied_rooms("2022-04-04", "2022-04-05", 1)
+            self.room_2 not in get_occupied_rooms("2022-04-03", "2022-04-04", 2)
         )
         self.assertTrue(
-            self.room_3 not in get_occupied_rooms("2022-04-04", "2022-04-05", 1)
+            self.room_2 in get_occupied_rooms("2022-04-04", "2022-04-05", 2)
+        )
+        self.assertTrue(
+            self.room_3 not in get_occupied_rooms("2022-04-04", "2022-04-05", 2)
         )
 
     def test_overlapping_reservations(self):
-        self.assertFalse(
-            overlapping_reservations(self.room_1.number, "2022-04-02", "2022-04-03")
+        self.assertEqual(
+            overlapping_reservations(
+                self.room_1.number, "2022-04-02", "2022-04-03"
+            ).count(),
+            0,
         )
-        self.assertTrue(
-            any(
-                overlapping_reservations(self.room_1.number, "2022-04-03", "2022-04-04")
-            )
+        self.assertEqual(
+            # Ocupada
+            overlapping_reservations(
+                self.room_1.number, "2022-04-03", "2022-04-04"
+            ).count(),
+            1,
         )
-        self.assertTrue(
-            any(
-                overlapping_reservations(self.room_1.number, "2022-04-04", "2022-04-05")
-            )
+        self.assertEqual(  # Ocupada
+            overlapping_reservations(
+                self.room_1.number, "2022-04-04", "2022-04-05"
+            ).count(),
+            1,
         )
-        self.assertTrue(
-            overlapping_reservations(self.room_1.number, "2022-04-05", "2022-04-06")
+        self.assertEqual(  # Sera ocupada
+            overlapping_reservations(
+                self.room_1.number, "2022-04-05", "2022-04-06"
+            ).count(),
+            1,
         )
-        self.assertFalse(
-            overlapping_reservations(self.room_1.number, "2022-04-06", "2022-04-07")
+        self.assertEqual(
+            overlapping_reservations(
+                self.room_1.number, "2022-04-06", "2022-04-07"
+            ).count(),
+            0,
+        )
+        self.assertEqual(
+            overlapping_reservations(
+                self.room_1.number, "2022-05-04", "2022-05-05"
+            ).count(),
+            1,
         )
 
     def test_get_price(self):

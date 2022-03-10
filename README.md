@@ -14,6 +14,8 @@ Si prefieres ejecutarlo localmente:
 4. `python manage.py runserver`
 5. Abre [http://127.0.0.1:8000/](http://127.0.0.1:8000/) en tu navegador.
 
+Las credenciales de administrador fueron hechas llegar por correo.
+
 Puedes ejecutar las pruebas con `python manage.py test`.
 También se ha habilitado CI/CD en Github.
 

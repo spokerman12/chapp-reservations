@@ -1,4 +1,3 @@
-from django.http import QueryDict
 from .validators import (
     validate_check_in,
     validate_check_in_out,
@@ -19,16 +18,27 @@ def get_occupied_rooms(check_in: str, check_out: str, num_guests: int) -> list:
     """
     check_in_dt = datetime.date(datetime.strptime(check_in, "%Y-%m-%d"))
     check_out_dt = datetime.date(datetime.strptime(check_out, "%Y-%m-%d"))
-    return [
+    rooms = [
         reservation.room
-        for reservation in Reservation.objects.filter(
-            check_in__gte=check_in_dt,
-            check_in__lte=check_out_dt,
+        for reservation in Reservation.objects.filter(  # Contenida
+            check_in__lte=check_in_dt,
+            check_out__gte=check_out_dt,
+            room__room_type__max_capacity__gte=num_guests,
+        )
+        | Reservation.objects.filter(  # Ocupada
+            check_in__lte=check_in_dt,
             check_out__gte=check_in_dt,
             check_out__lte=check_out_dt,
             room__room_type__max_capacity__gte=num_guests,
         )
+        | Reservation.objects.filter(  # Sera ocupada
+            check_in__gte=check_in_dt,
+            check_in__lte=check_out_dt,
+            check_out__gte=check_out_dt,
+            room__room_type__max_capacity__gte=num_guests,
+        )
     ]
+    return rooms
 
 
 def overlapping_reservations(room_id: int, check_in: str, check_out: str):
@@ -37,12 +47,24 @@ def overlapping_reservations(room_id: int, check_in: str, check_out: str):
     que solapan con el rango de fechas 'check_in', 'check_out'
     suministrado
     """
-    return Reservation.objects.filter(
-        room_id=room_id,
-        check_in__gte=check_in,
-        check_in__lte=check_out,
-    ) | Reservation.objects.filter(
-        room_id=room_id, check_out__gte=check_in, check_out__lte=check_out
+    return (
+        Reservation.objects.filter(  # Contenida
+            room_id=room_id,
+            check_in__lte=check_in,
+            check_out__gte=check_out,
+        )
+        | Reservation.objects.filter(  # Ocupada
+            room_id=room_id,
+            check_in__lte=check_in,
+            check_out__gte=check_in,
+            check_out__lte=check_out,
+        )
+        | Reservation.objects.filter(  # Sera ocupada
+            room_id=room_id,
+            check_in__gte=check_in,
+            check_in__lte=check_out,
+            check_out__gte=check_out,
+        )
     )
 
 
