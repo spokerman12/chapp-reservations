@@ -12,7 +12,7 @@ def convert_dt(date_str):
     """
     Convierte una fecha "%Y-%m-%d" en datetime.date
     """
-    if type(date_str) == datetime:
+    if type(date_str) == type(datetime.today()):
         return date_str.date()
     if type(date_str) == str:
         return datetime.strptime(date_str, "%Y-%m-%d").date()
