@@ -27,7 +27,9 @@ def validate_check_in(value):
     """
     Verifica que value no sea en el pasado
     """
-    if datetime.strptime(value, "%Y-%m-%d") < TODAY:
+    if type(value) == str:
+        value = datetime.strptime(value, "%Y-%m-%d")
+    if value < TODAY:
         raise ValidationError(
             f"Check-in date {value} must be at least today.",
         )
@@ -37,7 +39,9 @@ def validate_check_out(value):
     """
     Verifica que value sea al menos mañana
     """
-    if datetime.strptime(value, "%Y-%m-%d") < TOMORROW:
+    if type(value) == str:
+        value = datetime.strptime(value, "%Y-%m-%d")
+    if value < TOMORROW:
         raise ValidationError(
             f"Check-out date {value} must be at least tomorrow.",
         )
@@ -47,7 +51,9 @@ def validate_current_year(value):
     """
     Verifica que value sea en el año en curso
     """
-    if datetime.strptime(value, "%Y-%m-%d").year != datetime.today().year:
+    if type(value) == str:
+        value = datetime.strptime(value, "%Y-%m-%d").year
+    if value != datetime.today().year:
         raise ValidationError(
             f"Please select a date in {datetime.today().year}",
         )
@@ -57,9 +63,13 @@ def validate_check_in_out(check_in, check_out):
     """
     Verifica que check_in sea antes que check_out
     """
-    if datetime.strptime(check_in, "%Y-%m-%d") >= datetime.strptime(
-        check_out, "%Y-%m-%d"
-    ):
+
+    if type(check_in) == str:
+        check_in = datetime.strptime(check_in, "%Y-%m-%d")
+    if type(check_out) == str:
+        check_out = datetime.strptime(check_out, "%Y-%m-%d")
+
+    if check_in >= check_out:
         raise ValidationError(
             f"Check-In date {check_in} cannot be after Check-Out date {check_out}",
         )
