@@ -1,4 +1,4 @@
-# chapp-reservations
+# Reservations
 
 ## Para ejecutar el programa:
 
@@ -32,7 +32,7 @@ También se ha habilitado CI/CD en Github.
 - Cambié "Cuádruple" por "Familiar", me parece que sonaba mejor.
 - Inicialmente programé todo en inglés, pero luego reescribí los templates en español viendo que los precios estaban en Euros.
 
-## Requerimientos:
+## Requerimientos del stakeholder:
 
 ```
     Una reserva consiste de:
