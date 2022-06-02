@@ -1,7 +1,5 @@
 # chapp-reservations
 
-Este programa es una prueba de código solicitada por Chapp Solutions.
-
 ## Para ejecutar el programa:
 
 Puedes visitar [https://chapp-reservations.herokuapp.com](https://chapp-reservations.herokuapp.com)
